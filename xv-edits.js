@@ -107,22 +107,127 @@
   styles.textContent = `
     :root {
       --xv-emerald: #0d5c4b;
-      --xv-emerald-dark: #073f34;
+      --xv-emerald-dark: #043d32;
       --xv-ivory: #fff8f0;
-      --xv-bronze: #b8894a;
+      --xv-bronze: #8a5a20;
     }
 
     .bg-primary-500 { background-color: var(--xv-emerald) !important; }
     .bg-primary-600 { background-color: var(--xv-ivory) !important; }
     .bg-primary-200 { background-color: var(--xv-bronze) !important; }
-    .bg-primary-200\\/80 { background-color: rgba(184, 137, 74, 0.84) !important; }
+    .bg-primary-200\\/80 { background-color: rgba(138, 90, 32, 0.86) !important; }
     .text-primary-500 { color: var(--xv-emerald) !important; }
     .text-primary-600 { color: var(--xv-ivory) !important; }
     .text-primary-200 { color: var(--xv-bronze) !important; }
     .text-primary-100 { color: var(--xv-ivory) !important; }
     .border-primary-500 { border-color: var(--xv-bronze) !important; }
     .border-primary-600 { border-color: var(--xv-ivory) !important; }
-    button.carousel-btn { background-color: rgba(184, 137, 74, 0.92) !important; }
+    button.carousel-btn { background-color: rgba(138, 90, 32, 0.94) !important; }
+
+    /* Replace the old pink copy with high-contrast emerald on light panels. */
+    #ConfirmAttendance h1,
+    #ConfirmAttendance h2,
+    #ConfirmAttendance h3,
+    #ConfirmAttendance h4,
+    #ConfirmAttendance h5,
+    #ConfirmAttendance h6,
+    #ConfirmAttendance p,
+    padres_1_minimalista h1,
+    padres_1_minimalista h2,
+    padres_1_minimalista h3,
+    padres_1_minimalista h4,
+    padres_1_minimalista p,
+    #Ubicaciones h1,
+    #Ubicaciones h2,
+    #Ubicaciones h3,
+    #Ubicaciones h4,
+    #Ubicaciones h5,
+    #Ubicaciones h6 {
+      color: var(--xv-emerald-dark) !important;
+      text-shadow: 0 1px 0 rgba(255, 248, 240, 0.55);
+    }
+
+    #ConfirmAttendance .text-primary-200,
+    #ConfirmAttendance .text-primary-500,
+    padres_1_minimalista .text-primary-200,
+    padres_1_minimalista .text-primary-500,
+    #Ubicaciones .text-primary-200,
+    #Ubicaciones .text-primary-500 {
+      color: var(--xv-emerald-dark) !important;
+    }
+
+    #Ubicaciones a {
+      color: var(--xv-emerald-dark) !important;
+      border-color: var(--xv-bronze) !important;
+      background: rgba(255, 248, 240, 0.62);
+      font-weight: 700;
+    }
+
+    #Ubicaciones a i {
+      color: var(--xv-bronze) !important;
+    }
+
+    /* Venue showcase: emerald copy, bronze used only as an accent. */
+    sugerenciahospedaje_elegance h1,
+    sugerenciahospedaje_elegance h2,
+    sugerenciahospedaje_elegance h3,
+    sugerenciahospedaje_elegance h4,
+    sugerenciahospedaje_elegance h5,
+    sugerenciahospedaje_elegance h6,
+    sugerenciahospedaje_elegance p,
+    sugerenciahospedaje_elegance a {
+      color: var(--xv-emerald-dark) !important;
+      text-shadow: 0 1px 0 rgba(255, 248, 240, 0.55);
+    }
+
+    sugerenciahospedaje_elegance a {
+      border-color: var(--xv-bronze) !important;
+      background: rgba(255, 248, 240, 0.62);
+      font-weight: 700;
+    }
+
+    sugerenciahospedaje_elegance a i {
+      color: var(--xv-bronze) !important;
+    }
+
+    /* Dress code and contacts use emerald for maximum contrast. */
+    #CodigoDeVestimenta h1,
+    #CodigoDeVestimenta h2,
+    #CodigoDeVestimenta h3,
+    #CodigoDeVestimenta h4,
+    #CodigoDeVestimenta h5,
+    #CodigoDeVestimenta h6,
+    #CodigoDeVestimenta p,
+    #CodigoDeVestimenta span,
+    #Contacto h1,
+    #Contacto h2,
+    #Contacto h3,
+    #Contacto h4,
+    #Contacto h5,
+    #Contacto h6,
+    #Contacto p,
+    #Contacto span,
+    #Contacto a {
+      color: var(--xv-emerald-dark) !important;
+      text-shadow: 0 1px 0 rgba(255, 248, 240, 0.55);
+    }
+
+    #CodigoDeVestimenta .text-primary-200,
+    #CodigoDeVestimenta .text-primary-500,
+    #Contacto .text-primary-200,
+    #Contacto .text-primary-500 {
+      color: var(--xv-emerald-dark) !important;
+    }
+
+    #Contacto a {
+      border-color: var(--xv-bronze) !important;
+      background: rgba(255, 248, 240, 0.62);
+      font-weight: 700;
+    }
+
+    #Contacto a i {
+      color: var(--xv-bronze) !important;
+    }
 
     .xv-rsvp-reminder {
       display: grid;
