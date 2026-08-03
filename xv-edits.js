@@ -140,6 +140,12 @@
     .border-primary-600 { border-color: var(--xv-ivory) !important; }
     button.carousel-btn { background-color: rgba(138, 90, 32, 0.94) !important; }
 
+    /* Background visible behind the opening envelope and wax seal. */
+    SCM_1_Original .fullscreen-fixed,
+    .fullscreen-fixed[class*="bg-[#eae3d5]"] {
+      background-color: #083226 !important;
+    }
+
     .xv-arrival-notice {
       max-width: 36rem;
       margin: 1.5rem auto 0;
