@@ -4,13 +4,27 @@
       rsvpTitle: "RSVP",
       rsvpBody: "Please confirm your attendance and guest count through your invitation link.",
       rsvpContact: "Questions or confirmations by phone: (956) 552-3859",
-      venueShowcase: "Inside Estancia Events"
+      venueShowcase: "Inside Estancia Events",
+      itinerary: [
+        ["Guest welcome and photo session", "8:00 p.m."],
+        ["Presentation", "8:30 p.m."],
+        ["Dinner", "9:30 p.m."],
+        ["Dance begins", "10:30 p.m."]
+      ],
+      arrivalNotice: "Guests are kindly asked to arrive 20 minutes before the presentation."
     },
     es: {
       rsvpTitle: "Confirmaci\u00f3n de asistencia",
       rsvpBody: "Por favor confirma tu asistencia y cantidad de invitados desde el enlace de tu invitaci\u00f3n.",
       rsvpContact: "Dudas o confirmaciones por tel\u00e9fono: (956) 552-3859",
-      venueShowcase: "Interior de Estancia Events"
+      venueShowcase: "Interior de Estancia Events",
+      itinerary: [
+        ["Bienvenida de los invitados y sesi\u00f3n de fotos", "8:00 p.m."],
+        ["Presentaci\u00f3n", "8:30 p.m."],
+        ["Cena", "9:30 p.m."],
+        ["Inicia el baile", "10:30 p.m."]
+      ],
+      arrivalNotice: "Se les pide a los invitados llegar 20 minutos antes de la presentaci\u00f3n."
     }
   };
 
@@ -24,22 +38,28 @@
       : "en";
   }
 
-  function removeUnconfirmedItineraryItems() {
+  function updateItinerary() {
     const itinerary = Array.from(document.querySelectorAll("#Itinerario")).find((element) => {
       return element.querySelector("h3");
     });
     if (!itinerary) return;
 
-    const unconfirmed = [
-      "presentacion", "presentaci\u00f3n", "presentation",
-      "cena", "dinner",
-      "baile", "dance",
-      "despedida", "farewell"
-    ];
+    const localized = copy[language()] || copy.en;
+    const headings = Array.from(itinerary.querySelectorAll("h3"));
+    const eventTitles = headings.filter((element) => !/^\d{1,2}:\d{2}/.test(normalizedText(element)));
 
-    Array.from(itinerary.querySelectorAll("h3")).forEach((title) => {
-      if (!unconfirmed.includes(normalizedText(title))) return;
-      const card = title.closest(".grid");
+    localized.itinerary.forEach(([title, time], index) => {
+      const titleElement = eventTitles[index];
+      const card = titleElement && titleElement.closest(".grid");
+      const timeElement = card && Array.from(card.querySelectorAll("h3")).find((element) => {
+        return /^\d{1,2}:\d{2}/.test(normalizedText(element));
+      });
+      if (titleElement && titleElement.textContent.trim() !== title) titleElement.textContent = title;
+      if (timeElement && timeElement.textContent.trim() !== time) timeElement.textContent = time;
+    });
+
+    eventTitles.slice(localized.itinerary.length).forEach((titleElement) => {
+      const card = titleElement.closest(".grid");
       const marker = card && card.previousElementSibling && card.previousElementSibling.querySelector(".fa-heart")
         ? card.previousElementSibling
         : null;
@@ -47,18 +67,14 @@
       if (marker) marker.remove();
     });
 
-    const reception = Array.from(itinerary.querySelectorAll("h3")).find((element) => {
-      return ["recepcion", "recepci\u00f3n", "reception"].includes(normalizedText(element));
-    });
-    if (reception) {
-      const card = reception.closest(".grid");
-      const time = card && Array.from(card.querySelectorAll("h3")).find((element) => {
-        return /^\d{1,2}:\d{2}/.test(normalizedText(element));
-      });
-      if (time && normalizedText(time) !== "8:00 p.m.") {
-        time.textContent = "8:00 p.m.";
-      }
+    let notice = itinerary.querySelector(".xv-arrival-notice");
+    if (!notice) {
+      notice = document.createElement("p");
+      notice.className = "xv-arrival-notice";
+      const panel = itinerary.querySelector(".bg-primary-200\\/80") || itinerary;
+      panel.appendChild(notice);
     }
+    if (notice.textContent !== localized.arrivalNotice) notice.textContent = localized.arrivalNotice;
   }
 
   function removePreviousFamilySection() {
@@ -97,7 +113,7 @@
   }
 
   function applyEdits() {
-    removeUnconfirmedItineraryItems();
+    updateItinerary();
     removePreviousFamilySection();
     updateRsvpReminder();
     labelVenueShowcase();
@@ -106,8 +122,8 @@
   const styles = document.createElement("style");
   styles.textContent = `
     :root {
-      --xv-emerald: #0d5c4b;
-      --xv-emerald-dark: #043d32;
+      --xv-emerald: #083226;
+      --xv-emerald-dark: #083226;
       --xv-ivory: #fff8f0;
       --xv-bronze: #8a5a20;
     }
@@ -123,6 +139,21 @@
     .border-primary-500 { border-color: var(--xv-bronze) !important; }
     .border-primary-600 { border-color: var(--xv-ivory) !important; }
     button.carousel-btn { background-color: rgba(138, 90, 32, 0.94) !important; }
+
+    .xv-arrival-notice {
+      max-width: 36rem;
+      margin: 1.5rem auto 0;
+      padding: 0.9rem 1.1rem;
+      border: 1px solid rgba(255, 248, 240, 0.72);
+      border-radius: 0.5rem;
+      background: var(--xv-emerald);
+      color: var(--xv-ivory);
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+    }
 
     /* Replace the old pink copy with high-contrast emerald on light panels. */
     #ConfirmAttendance h1,
