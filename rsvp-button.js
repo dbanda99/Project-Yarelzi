@@ -28,7 +28,7 @@
       gap: 10px;
       width: 100%;
       margin: 16px auto 0;
-      color: #9b746d;
+      color: #fff8f0;
       text-align: center;
     }
 
@@ -74,7 +74,7 @@
       padding: 12px 20px;
       border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 6px;
-      background: #734251;
+      background: #083226;
       color: #fff;
       box-shadow: 0 16px 40px rgba(45, 37, 39, 0.28);
       font-family: Arial, sans-serif;

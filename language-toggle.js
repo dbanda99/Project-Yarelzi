@@ -10,8 +10,8 @@
   let pendingApply = false;
 
   const englishToSpanish = {
-    "we are delighted to invite you!": "\u00a1Nos complace invitarte!",
-    "we are delighted to invite you": "\u00a1Nos complace invitarte!",
+    "we are delighted to invite you!": "\u00a1Es un placer invitarlos!",
+    "we are delighted to invite you": "\u00a1Es un placer invitarlos!",
     "guest name": "Nombre del invitado",
     "guest message": "Mensaje para el invitado",
     "pass": "Pase",

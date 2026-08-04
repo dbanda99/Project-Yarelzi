@@ -72,7 +72,7 @@ function doGet(e) {
     inInvitadoPases: Number(record.passes || 0),
     nvInvitadoMesa: record.table || "",
     txInvitadoMensajeEspecial: record.message || "",
-    cbNvStatusConfirmacion: normalizeStatus(record.rsvp_status),
+    cbNvStatusConfirmacion: normalizeInvitationStatus(record.rsvp_status),
     guestsAttending: Number(record.guests_attending || 0),
     noPartidaA: guestId
   }, callback);
@@ -159,6 +159,13 @@ function normalizeStatus(status) {
   const value = String(status || "").trim().toLowerCase();
   if (value === "confirmado" || value === "confirmed" || value === "attending") return "Attending";
   if (value === "declinado" || value === "declined" || value === "not attending") return "Not Attending";
+  return "Pending";
+}
+
+function normalizeInvitationStatus(status) {
+  const value = String(status || "").trim().toLowerCase();
+  if (value === "confirmado" || value === "confirmed" || value === "attending") return "Confirmed";
+  if (value === "declinado" || value === "declined" || value === "not attending") return "Declined";
   return "Pending";
 }
 
