@@ -1,4 +1,4 @@
-window.GUEST_API_URL = "https://script.google.com/macros/s/AKfycbwwyhkDM_4xarzaQBZoMd0AWB5axvXqBFN7DnfwJxpRmnYcPDraxuqu0kFP_KWfB-RnPA/exec";
+window.GUEST_API_URL = "https://script.google.com/macros/s/AKfycbxHGoofY4w5eLrfS1kO2a3TADHbiVH5wsCxQAFXfxs3avOydT8Tz6iLeOPzaZqmfQhM/exec";
 
 // Live Server testing only: this guest is shown when no ?guest= value is present.
 window.GUEST_API_LOCAL_DEFAULT_GUEST = "1";
